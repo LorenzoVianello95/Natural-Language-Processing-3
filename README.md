@@ -17,6 +17,6 @@ file 4: disambiguate Neural network
 
 	Network used to disambiguate the dataset.
 
-file 5: auxiliares.py
+file 5: utils_functions.py
 
 	Some auxiliares functions.
