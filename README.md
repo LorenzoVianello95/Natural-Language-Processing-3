@@ -20,3 +20,8 @@ file 4: disambiguate Neural network
 file 5: utils_functions.py
 
 	Some auxiliares functions.
+
+file 6: extension_3.py
+
+	My attempt of define the "selectional preference of PropBank predicates
+	and their arguments"
