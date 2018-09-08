@@ -271,6 +271,7 @@ def build_w2v_embedding(sentences, flag):
                     new_s.append("UNK")
             new_sentences.append(new_s)
         model = Word2Vec(new_sentences, size=100, window=5, min_count=5, workers=4)
+        model.train(new_sentences, total_examples=len(new_sentences), epochs=10)
         listW = sorted(voc_lemmas, key=voc_lemmas.get, reverse=False)
         embedding=[]
         for w in listW:
@@ -289,6 +290,7 @@ def build_w2v_embedding(sentences, flag):
                     new_s.append("UNK")
             new_sentences.append(new_s)
         model = Word2Vec(new_sentences, size=100, window=5, min_count=5, workers=4)
+        model.train(new_sentences, total_examples=len(new_sentences), epochs=10)
         listW = sorted(voc_pred, key=voc_pred.get, reverse=False)
         embedding=[]
         for w in listW:

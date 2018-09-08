@@ -182,6 +182,7 @@ sys.exit("k")
 #calcola centroid in base a w2v
 def extract(tree):
     model = Word2Vec(w2v_lemmas, size=100, window=5, min_count=1, workers=4)
+    model.train(w2v_lemmas, total_examples=len(w2v_lemmas), epochs=10)
     word_vectors = model.wv
     new_tree={}
     for k in tree.keys():

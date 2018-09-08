@@ -133,6 +133,7 @@ from gensim.models import Word2Vec
 #MY ATTEMPT TO LINK SEMCOR AND CONL USING THE W2V EMBEEDING
 def bn_to_conl(w2v_sens,voc_SemCor):
     model_mom = Word2Vec(w2v_sens, size=100, window=10, min_count=5, workers=4)
+    model_mom.train(w2v_sens, total_examples=len(w2v_sens), epochs=10)
     word_vectors = model_mom.wv
     voc_bn_conl={}
     c=0
