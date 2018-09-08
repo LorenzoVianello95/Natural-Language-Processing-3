@@ -181,28 +181,31 @@ sys.exit("k")
 
 #calcola centroid in base a w2v
 def extract(tree):
-    model = Word2Vec(w2v_lemmas, size=100, window=5, min_count=1, workers=4)
-    model.train(w2v_lemmas, total_examples=len(w2v_lemmas), epochs=10)
+    model = Word2Vec(w2v_lemmas, size=100, window=10, min_count=2, workers=4)
+    model.train(w2v_lemmas, total_examples=len(w2v_lemmas), epochs=20)
     word_vectors = model.wv
     new_tree={}
     for k in tree.keys():
         word=tree[k]
-        new_sub={}
-        for k1 in word.keys():
-            args=word[k1]
-            centroid=np.zeros(100)
-            c=0
-            for el in args:
-                if el in word_vectors.vocab:
-                    mm=model[el]
-                    centroid+= mm
-                    c+=1
-            centroid/=c
-            nw = model.most_similar( [ centroid ], [], 1)
-            new_sub[k1]=nw[0][0]
+        #print word
+        #new_sub={}
+        #for k1 in word.keys():
+        #    args=word[k1]
+        centroid=np.zeros(100)
+        c=0
+        for el in word:
+            if el[0] in word_vectors.vocab:
+                mm=model[el[0]]
+                centroid+= mm
+                c+=1
+        centroid/=c
+        print centroid
+        nw = model.most_similar( [ centroid ], [], 1)
+        new_sub=nw[0][0]
         new_tree[k]=new_sub
     return new_tree
 
+#print "CENTROID", extract(dict_pred_args["eat.01"])
 
 a=["pizza","icecream","bowl","rice", "apples","arts"]
 
